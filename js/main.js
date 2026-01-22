@@ -1,14 +1,22 @@
 // DOM ELEMENTS
 const forminput = document.getElementById("formbutton");
 const emailadder = document.getElementById("emailadder");
-
+const loader = document.getElementById("loader");
 // AXIOS GENERATOR EMAIL
-for (let i = 0; i < 10; i++) {
-  axios
-    .get("https://flynn.boolean.careers/exercises/api/random/mail")
-    .then((resp) => {
-      const email = resp.data.response;
-      let innerEmail = `<li>
+
+forminput.addEventListener("click", function (e) {
+  e.preventDefault();
+  loader.classList.remove("d-none");
+  emailadder.classList.add("d-none");
+
+  for (let i = 0; i < 10; i++) {
+    axios
+
+      .get("https://flynn.boolean.careers/exercises/api/random/mail")
+
+      .then((resp) => {
+        const email = resp.data.response;
+        let innerEmail = `<li>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -28,6 +36,11 @@ for (let i = 0; i < 10; i++) {
           </svg>
           ${email}
         </li>`;
-      emailadder.innerHTML += innerEmail;
-    });
-}
+        emailadder.innerHTML += innerEmail;
+        emailadder.remove("d-none");
+      })
+      .finally(() => {
+        loader.classList.add("d-none");
+      });
+  }
+});
