@@ -37,7 +37,7 @@ forminput.addEventListener("click", function (e) {
           ${email}
         </li>`;
         emailadder.innerHTML += innerEmail;
-        emailadder.remove("d-none");
+        emailadder.classList.remove("d-none");
       })
       .finally(() => {
         loader.classList.add("d-none");
