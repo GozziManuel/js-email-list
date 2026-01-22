@@ -2,6 +2,7 @@
 const forminput = document.getElementById("formbutton");
 const emailadder = document.getElementById("emailadder");
 const loader = document.getElementById("loader");
+const button = document.getElementById("buttonID");
 // AXIOS GENERATOR EMAIL
 
 forminput.addEventListener("submit", function (e) {
@@ -41,9 +42,12 @@ forminput.addEventListener("submit", function (e) {
         </li>`;
         emailadder.innerHTML += innerEmail;
         emailadder.classList.remove("d-none");
+        button.innerText = "Resetta";
       })
       .finally(() => {
         loader.classList.add("d-none");
       });
   }
+
+  return;
 });
