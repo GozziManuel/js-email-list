@@ -4,7 +4,10 @@ const emailadder = document.getElementById("emailadder");
 const loader = document.getElementById("loader");
 // AXIOS GENERATOR EMAIL
 
-forminput.addEventListener("click", function (e) {
+forminput.addEventListener("submit", function (e) {
+  if (emailadder.classList.contains("d-none") == false) {
+    return;
+  }
   e.preventDefault();
   loader.classList.remove("d-none");
   emailadder.classList.add("d-none");
