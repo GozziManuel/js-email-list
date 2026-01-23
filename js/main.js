@@ -3,17 +3,15 @@ const forminput = document.getElementById("formbutton");
 const emailadder = document.getElementById("emailadder");
 const loader = document.getElementById("loader");
 const button = document.getElementById("buttonID");
+const buttonReset = document.getElementById("resetbtn");
+
 // AXIOS GENERATOR EMAIL
+buttonReset.disabled = true;
 
-forminput.addEventListener("submit", function (e) {
-  if (emailadder.classList.contains("d-none") == false) {
-    return;
-  }
-  e.preventDefault();
-  loader.classList.remove("d-none");
-  emailadder.classList.add("d-none");
+function axiosEmail(numeroEmail) {
+  button.disabled = false;
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < numeroEmail; i++) {
     axios
 
       .get("https://flynn.boolean.careers/exercises/api/random/mail")
@@ -40,14 +38,20 @@ forminput.addEventListener("submit", function (e) {
           </svg>
           ${email}
         </li>`;
+
         emailadder.innerHTML += innerEmail;
         emailadder.classList.remove("d-none");
-        button.innerText = "Resetta";
+        button.disabled = true;
+        buttonReset.disabled = false;
       })
       .finally(() => {
         loader.classList.add("d-none");
       });
   }
-
-  return;
+}
+button.addEventListener("click", (e) => {
+  e.preventDefault();
+  axiosEmail(10);
 });
+
+buttonReset.addEventListener("reset", () => {});
